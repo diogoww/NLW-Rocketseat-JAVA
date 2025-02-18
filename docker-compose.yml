@@ -6,7 +6,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
     ports: 
-      - '3307:3307'
+      - '3306:3306'
     networks: 
       - nlw-network
 networks:
