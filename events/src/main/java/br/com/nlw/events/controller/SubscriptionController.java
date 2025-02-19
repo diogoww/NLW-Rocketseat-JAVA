@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.nlw.events.dto.ErrorMessage;
 import br.com.nlw.events.dto.SubscriptionConflictException;
 import br.com.nlw.events.exception.EventNotFoundException;
+import br.com.nlw.events.exception.UserIndicadorNotFoundException;
 import br.com.nlw.events.model.Subscription;
 import br.com.nlw.events.model.User;
 import br.com.nlw.events.service.SubscriptionService;
