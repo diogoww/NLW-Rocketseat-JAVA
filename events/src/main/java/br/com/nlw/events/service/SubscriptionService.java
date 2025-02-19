@@ -1,6 +1,7 @@
 package br.com.nlw.events.service;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,6 +75,15 @@ public class SubscriptionService {
 	}
 	
 	public SubscriptionRankingByUser getRankingByUser(String prettyName, Integer userId) {
-		return null;
+		List<SubscriptionRankingItem> ranking = getCompleteRanking(prettyName);
+		
+	 	SubscriptionRankingItem item = ranking.stream().filter(i->i.userId().equals(userId)).findFirst().orElse(null);
+		if(item == null) {
+			throw new UserIndicadorNotFoundException("nao há inscrições para com idicação do usuario "+userId);
+		}
+		Integer posicao = IntStream.range(0, ranking.size())
+						  .filter(pos -> ranking.get(pos).userId().equals(userId))
+						  .findFirst().getAsInt();
+		return new SubscriptionRankingByUser(item, posicao+1);
 	}
 }
